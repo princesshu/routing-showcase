@@ -1,0 +1,17 @@
+---
+import ServerTime from '../../components/ServerTime.astro';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Server islands">
+  <h1>Server islands</h1>
+  <p>
+    This page is prerendered. The island below is not: the browser fetches it
+    from its own route after the page has loaded.
+  </p>
+  <ServerTime server:defer greeting="Hello from the page">
+    <p slot="fallback" class="muted">
+      Loading the server island…
+    </p>
+  </ServerTime>
+</Base>

@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { products } from '../../data/catalog';
+---
+
+<Base title="Products">
+  <h1>Products</h1>
+  <ul>
+    {products.map((product) => (
+      <li>
+        <a href={`/products/${product.id}`}>{product.name}</a>
+      </li>
+    ))}
+  </ul>
+  <p>
+    <a href="/products/latest">Latest product</a>{' '}
+    <span class="muted">
+      (a static route that wins over <code>[id]</code>)
+    </span>
+  </p>
+</Base>

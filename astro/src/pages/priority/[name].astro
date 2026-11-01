@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+
+export const prerender = false;
+
+const { name } = Astro.params;
+---
+
+<Base title="Priority: named parameter">
+  <h1>Rendered by priority/[name].astro</h1>
+  <p>
+    <code>name</code> is <code>{name}</code>. <code>[...rest].astro</code> also
+    matches one segment, but a named parameter wins over a rest parameter.
+  </p>
+</Base>

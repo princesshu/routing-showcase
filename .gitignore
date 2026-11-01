@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+
+# Next.js build output and generated types
+.next
+next-env.d.ts
+*.tsbuildinfo
+
+# Astro build output and generated types
+dist
+.astro
+
+# Environment variables
+.env*
+
+# Vercel CLI project link
+.vercel
+
+# Local TLS certificates and keys
+*.pem
+
+# Logs
+*.log
+
+# Editors and OS
+.idea
+.vscode
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

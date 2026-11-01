@@ -1,0 +1,5 @@
+packages:
+  - nextjs
+  - astro
+allowBuilds:
+  unrs-resolver: false

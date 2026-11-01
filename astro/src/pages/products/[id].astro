@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import Base from '../../layouts/Base.astro';
+import { products } from '../../data/catalog';
+
+// One HTML file per product, written at build time.
+export const getStaticPaths = (() =>
+  products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }))) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { product } = Astro.props;
+---
+
+<Base title={product.name}>
+  <h1>{product.name}</h1>
+  <p>${product.price}</p>
+  <p>
+    <a href={`/products/${product.id}/reviews/1`}>Review 1</a>{' '}
+    <span class="muted">(nested dynamic segments, rendered on demand)</span>
+  </p>
+</Base>

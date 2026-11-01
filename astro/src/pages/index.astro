@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+
+type Item = { href: string; label: string; note?: string };
+type Group = { title: string; items: Item[] };
+
+const groups: Group[] = [
+  {
+    title: 'Static and dynamic',
+    items: [
+      { href: '/about', label: '/about', note: 'static' },
+      { href: '/products', label: '/products', note: 'static list' },
+      {
+        href: '/products/1',
+        label: '/products/[id]',
+        note: 'prerendered by getStaticPaths',
+      },
+      {
+        href: '/products/latest',
+        label: '/products/latest',
+        note: 'beats [id], rewrites to /products/3',
+      },
+      {
+        href: '/products/1/reviews/1',
+        label: '/products/[id]/reviews/[reviewId]',
+        note: 'on demand',
+      },
+      { href: '/blog', label: '/blog/[...page]', note: 'paginate()' },
+    ],
+  },
+  {
+    title: 'Rest parameters',
+    items: [
+      { href: '/files', label: '/files', note: 'empty rest parameter' },
+      { href: '/files/a/b/c', label: '/files/a/b/c' },
+      {
+        href: '/guides',
+        label: '/guides/[...slug]',
+        note: 'content collection',
+      },
+    ],
+  },
+  {
+    title: 'Route priority',
+    items: [
+      { href: '/priority/static', label: '/priority/static' },
+      { href: '/priority/anything', label: '/priority/[name]' },
+      { href: '/priority/a/b', label: '/priority/[...rest]' },
+    ],
+  },
+  {
+    title: 'Redirects and the request pipeline',
+    items: [
+      { href: '/old-about', label: '/old-about', note: 'config redirect' },
+      { href: '/catalog/2', label: '/catalog/[id]', note: 'dynamic redirect' },
+      { href: '/moved-for-now', label: '/moved-for-now', note: '307' },
+      { href: '/admin', label: '/admin', note: 'redirected in src/fetch.ts' },
+      { href: '/healthz', label: '/healthz', note: 'answered in src/fetch.ts' },
+    ],
+  },
+  {
+    title: 'Internationalization',
+    items: [
+      { href: '/greeting', label: '/greeting', note: 'default locale' },
+      { href: '/de/greeting', label: '/de/greeting' },
+      { href: '/de/farewell', label: '/de/farewell', note: 'fallback to en' },
+    ],
+  },
+  {
+    title: 'Islands and navigation',
+    items: [
+      { href: '/islands/client', label: '/islands/client', note: 'client:*' },
+      {
+        href: '/islands/server',
+        label: '/islands/server',
+        note: 'server:defer',
+      },
+      {
+        href: '/transitions/1',
+        label: '/transitions/[step]',
+        note: 'ClientRouter, transition:persist',
+      },
+    ],
+  },
+  {
+    title: 'On-demand features',
+    items: [
+      { href: '/account', label: '/account', note: '401' },
+      { href: '/account?as=user', label: '/account?as=user', note: '403' },
+      { href: '/account?as=admin', label: '/account?as=admin', note: '200' },
+      { href: '/contact', label: '/contact', note: 'action' },
+      { href: '/cached', label: '/cached', note: 'route caching' },
+      { href: '/crash', label: '/crash', note: '500.astro' },
+      { href: '/api/notes', label: '/api/notes', note: 'endpoint' },
+      { href: '/robots.txt', label: '/robots.txt', note: 'static endpoint' },
+      {
+        href: '/_drafts/unpublished',
+        label: '/_drafts/unpublished',
+        note: 'excluded, 404',
+      },
+    ],
+  },
+];
+---
+
+<Base title="Home">
+  <h1>Astro Routing Showcase</h1>
+  <p>
+    Every link opens a working route. The source is under{' '}
+    <code>src/pages/</code>, and each pattern has a short doc in{' '}
+    <code>docs/</code>.
+  </p>
+  {groups.map((group) => (
+    <section>
+      <h2>{group.title}</h2>
+      <ul>
+        {group.items.map((item) => (
+          <li>
+            <a href={item.href}>
+              <code>{item.label}</code>
+            </a>
+            {item.note && <span class="muted"> {item.note}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>

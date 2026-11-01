@@ -1,0 +1,36 @@
+.lead {
+  margin: 0 0 2rem;
+  color: var(--muted);
+}
+
+.groupTitle {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  padding: 0.125rem 0;
+}
+
+.route {
+  font-family: var(--mono);
+}
+
+.note {
+  font-size: 0.75rem;
+  color: var(--muted);
+}

@@ -1,0 +1,15 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Greeting">
+  <h1>Hello</h1>
+  <p>
+    English is the default locale, so its pages have no prefix. Current locale:{' '}
+    <code>{Astro.currentLocale}</code>.
+  </p>
+  <p>
+    <a href={getRelativeLocaleUrl('de', 'greeting')}>Deutsch</a>
+  </p>
+</Base>

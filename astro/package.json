@@ -1,0 +1,41 @@
+{
+  "name": "@routing-showcase/astro",
+  "version": "1.0.0",
+  "description": "Runnable reference for file-based routing in Astro",
+  "keywords": [
+    "astro",
+    "routing",
+    "islands",
+    "server-islands",
+    "view-transitions",
+    "i18n",
+    "middleware"
+  ],
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "astro check",
+    "route-map": "node scripts/route-map.ts"
+  },
+  "dependencies": {
+    "@astrojs/node": "11.1.9",
+    "@astrojs/preact": "6.1.1",
+    "astro": "7.4.4",
+    "preact": "11.1.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "eslint": "10.14.0",
+    "eslint-plugin-astro": "3.2.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1"
+  }
+}

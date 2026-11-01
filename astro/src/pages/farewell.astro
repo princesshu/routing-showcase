@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Farewell">
+  <h1>Goodbye</h1>
+  <p>
+    There is no German version of this page. At <code>/de/farewell</code> the{' '}
+    <code>fallback</code> setting renders this English page instead of a 404.
+    Current locale: <code>{Astro.currentLocale}</code>.
+  </p>
+</Base>

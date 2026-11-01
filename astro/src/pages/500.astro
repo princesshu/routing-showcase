@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Astro passes the thrown value as the `error` prop. It is deliberately not
+// shown: error messages and stack traces can leak internals.
+---
+
+<Base title="Server error">
+  <h1>Something went wrong</h1>
+  <p>The page failed while rendering. Try again later.</p>
+</Base>

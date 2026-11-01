@@ -1,0 +1,27 @@
+---
+import Counter from '../../components/Counter';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Client islands">
+  <h1>Client islands</h1>
+  <p>
+    The page ships no JavaScript except for the components that carry a{' '}
+    <code>client:*</code> directive. Each one hydrates on its own schedule.
+  </p>
+  <Counter label="No directive" />
+  <Counter client:load label="client:load" />
+  <Counter client:idle label="client:idle" />
+  <Counter client:media="(max-width: 40rem)" label="client:media (narrow)" />
+  <Counter client:only="preact" label="client:only">
+    <p slot="fallback">client:only renders nothing on the server.</p>
+  </Counter>
+  <p class="spacer muted">Scroll down: the next island hydrates on sight.</p>
+  <Counter client:visible label="client:visible" />
+</Base>
+
+<style>
+  .spacer {
+    margin-bottom: 120vh;
+  }
+</style>

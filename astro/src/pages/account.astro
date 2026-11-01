@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+
+export const prerender = false;
+
+const { user } = Astro.locals;
+
+// Status and headers can only be set here, in the page itself: once the HTML
+// starts streaming, the response line has already been sent.
+let message = 'Welcome, admin.';
+if (!user) {
+  Astro.response.status = 401;
+  message = 'Sign in first (try ?as=user or ?as=admin).';
+} else if (user.role !== 'admin') {
+  Astro.response.status = 403;
+  message = 'Signed in, but only admins may see this page.';
+}
+---
+
+<Base title="Account">
+  <h1>Account</h1>
+  <p>{message}</p>
+</Base>

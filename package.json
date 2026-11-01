@@ -1,0 +1,26 @@
+{
+  "name": "routing-showcase",
+  "version": "1.0.0",
+  "description": "Runnable references for file-system routing, one app per framework",
+  "keywords": [
+    "routing",
+    "file-based-routing",
+    "nextjs",
+    "astro",
+    "examples"
+  ],
+  "private": true,
+  "license": "MIT",
+  "packageManager": "pnpm@12.14.0",
+  "scripts": {
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm -r build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.2"
+  }
+}

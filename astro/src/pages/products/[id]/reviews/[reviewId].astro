@@ -1,0 +1,25 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import { getProduct, getReview } from '../../../../data/catalog';
+
+// No getStaticPaths: the page is rendered per request, for any id.
+export const prerender = false;
+
+const { id, reviewId } = Astro.params;
+const product = getProduct(id);
+const review = getReview(reviewId);
+
+// A bodyless 404 makes Astro render src/pages/404.astro with that status.
+if (!product || !review) return new Response(null, { status: 404 });
+---
+
+<Base title={`Review ${reviewId} of ${product.name}`}>
+  <h1>
+    Review {reviewId} of {product.name}
+  </h1>
+  <blockquote>{review}</blockquote>
+  <p>
+    <a href={`/products/${id}/reviews/9`}>Review 9</a>{' '}
+    <span class="muted">(does not exist)</span>
+  </p>
+</Base>

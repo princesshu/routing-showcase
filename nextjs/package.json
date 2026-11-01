@@ -1,0 +1,38 @@
+{
+  "name": "@routing-showcase/nextjs",
+  "version": "1.0.0",
+  "description": "Runnable reference for file-system routing in the Next.js App Router",
+  "keywords": [
+    "nextjs",
+    "app-router",
+    "routing",
+    "parallel-routes",
+    "intercepting-routes",
+    "server-actions",
+    "typed-routes"
+  ],
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "next typegen && tsc --noEmit",
+    "route-map": "node scripts/route-map.mts"
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "react": "19.2.9",
+    "react-dom": "19.2.9"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "eslint": "9.39.0",
+    "eslint-config-next": "16.4.3",
+    "typescript": "5.7.2"
+  }
+}

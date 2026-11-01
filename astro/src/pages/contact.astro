@@ -1,0 +1,39 @@
+---
+import { actions, isInputError } from 'astro:actions';
+import Base from '../layouts/Base.astro';
+
+export const prerender = false;
+
+const result = Astro.getActionResult(actions.contact);
+
+// Post/redirect/get: a reload after sending does not submit the form again.
+if (result && !result.error) {
+  return Astro.redirect(
+    `/contact?sent=${encodeURIComponent(result.data.name)}`,
+    303
+  );
+}
+
+const errors = isInputError(result?.error) ? result.error.fields : {};
+const sentBy = Astro.url.searchParams.get('sent');
+---
+
+<Base title="Contact">
+  <h1>Contact</h1>
+  {sentBy && <p>Thanks, {sentBy}. Your message was sent.</p>}
+  <form method="POST" action={actions.contact}>
+    <p>
+      <label>
+        Name <input name="name" />
+      </label>
+      {errors.name && <small>{errors.name.join(' ')}</small>}
+    </p>
+    <p>
+      <label>
+        Message <input name="message" />
+      </label>
+      {errors.message && <small>{errors.message.join(' ')}</small>}
+    </p>
+    <button>Send</button>
+  </form>
+</Base>

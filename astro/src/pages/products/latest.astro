@@ -1,0 +1,5 @@
+---
+// A static route beats the dynamic [id].astro for /products/latest. The
+// rewrite then renders /products/3 here while the URL stays the same.
+return Astro.rewrite('/products/3');
+---

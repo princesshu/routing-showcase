@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import Base from '../../layouts/Base.astro';
+import { posts } from '../../data/catalog';
+
+// paginate() returns one path per page. With a rest parameter the first page
+// is /blog itself, followed by /blog/2, /blog/3 and so on.
+export const getStaticPaths = (({ paginate }) =>
+  paginate(posts, { pageSize: 2 })) satisfies GetStaticPaths;
+
+type Props = { page: Page<string> };
+
+const { page } = Astro.props;
+---
+
+<Base title={`Blog, page ${page.currentPage}`}>
+  <h1>Blog</h1>
+  <p class="muted">
+    Page {page.currentPage} of {page.lastPage}
+  </p>
+  <ul>
+    {page.data.map((title) => (
+      <li>{title}</li>
+    ))}
+  </ul>
+  <nav>
+    {page.url.prev && <a href={page.url.prev}>Previous</a>}
+    {page.url.next && <a href={page.url.next}>Next</a>}
+  </nav>
+</Base>

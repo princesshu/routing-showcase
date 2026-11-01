@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+
+export const prerender = false;
+
+// Fresh for 10 seconds, then served stale for up to 20 more while it
+// re-renders in the background. Caching is off in `astro dev`.
+Astro.cache.set({ maxAge: 10, swr: 20 });
+---
+
+<Base title="Cached">
+  <h1>Cached</h1>
+  <p>
+    Rendered at <code>{new Date().toISOString()}</code>.
+  </p>
+  <p class="muted">
+    Reload: the time only changes after the cache entry expires. The{' '}
+    <code>X-Astro-Cache</code> response header says HIT, MISS or STALE.
+  </p>
+</Base>

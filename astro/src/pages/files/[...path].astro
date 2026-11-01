@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+
+export const prerender = false;
+
+// A rest parameter also matches the folder itself: at /files it is undefined.
+const { path } = Astro.params;
+---
+
+<Base title="Files">
+  <h1>Files</h1>
+  <p>
+    <code>Astro.params.path</code> is{' '}
+    <code>{path === undefined ? 'undefined' : JSON.stringify(path)}</code>.
+  </p>
+  <ul>
+    <li>
+      <a href="/files">/files</a>
+    </li>
+    <li>
+      <a href="/files/a/b/c">/files/a/b/c</a>
+    </li>
+  </ul>
+</Base>

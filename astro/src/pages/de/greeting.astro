@@ -1,0 +1,15 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Begrüßung">
+  <h1>Hallo</h1>
+  <p>
+    German pages live under <code>src/pages/de/</code>. Current locale:{' '}
+    <code>{Astro.currentLocale}</code>.
+  </p>
+  <p>
+    <a href={getRelativeLocaleUrl('en', 'greeting')}>English</a>
+  </p>
+</Base>

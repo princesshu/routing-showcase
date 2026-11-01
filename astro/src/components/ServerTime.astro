@@ -1,0 +1,31 @@
+---
+interface Props {
+  greeting: string;
+}
+
+const { greeting } = Astro.props;
+
+// Simulated slow data, so the fallback is visible before the island arrives.
+await new Promise((resolve) => setTimeout(resolve, 800));
+---
+
+<dl>
+  <dt>Prop from the page</dt>
+  <dd>{greeting}</dd>
+  <dt>Rendered at</dt>
+  <dd>
+    <code>{new Date().toISOString()}</code>
+  </dd>
+  <dt>
+    <code>Astro.url.pathname</code> inside the island
+  </dt>
+  <dd>
+    <code>{Astro.url.pathname}</code>
+  </dd>
+  <dt>
+    Page URL, from the <code>Referer</code> header
+  </dt>
+  <dd>
+    <code>{Astro.request.headers.get('referer') ?? '(none)'}</code>
+  </dd>
+</dl>
