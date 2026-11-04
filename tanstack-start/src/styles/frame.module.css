@@ -1,0 +1,14 @@
+/* Outlines a layout, so you can see which part stays mounted on navigation. */
+.frame {
+  margin: 1.5rem 0 0;
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+}
+
+.label {
+  margin: 0 0 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}

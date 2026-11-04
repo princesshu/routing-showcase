@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [nextjs, astro]
+        app: [nextjs, astro, tanstack-start]
     defaults:
       run:
         working-directory: ${{ matrix.app }}
@@ -52,4 +52,10 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm build
+
+      # The build regenerates the committed route tree; any difference means
+      # it no longer matches src/routes/.
+      - if: matrix.app == 'tanstack-start'
+        run: git diff --exit-code -- src/routeTree.gen.ts
+
       - run: pnpm route-map --check

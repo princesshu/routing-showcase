@@ -6,9 +6,14 @@ node_modules
 next-env.d.ts
 *.tsbuildinfo
 
-# Astro build output and generated types
+# Astro and TanStack Start build output
 dist
+
+# Astro generated types
 .astro
+
+# TanStack Router generator temp files
+.tanstack
 
 # Environment variables
 .env*

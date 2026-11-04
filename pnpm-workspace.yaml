@@ -1,5 +1,6 @@
 packages:
   - nextjs
   - astro
+  - tanstack-start
 allowBuilds:
   unrs-resolver: false
