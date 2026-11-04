@@ -48,23 +48,28 @@ flowchart TD
 
 ## The modal
 
-`app/feed/_components/modal.tsx` wraps the intercepted page in a native `<dialog>`. `showModal()` provides focus handling, Esc support and an inert page behind it. Every way of closing calls `router.back()`:
+`app/feed/_components/modal.tsx` wraps the intercepted page in a native `<dialog>`. `showModal()` provides Esc support and an inert page behind it. Every way of closing calls `close()`, which closes the dialog first and then goes back:
 
 ```tsx
+const close = () => {
+  dialogRef.current?.close();
+  router.back();
+};
+
 <dialog
   ref={dialogRef}
   aria-labelledby={titleId}
   onCancel={(event) => {
     event.preventDefault();
-    router.back();
+    close();
   }}
   onClick={(event) => {
-    if (event.target === event.currentTarget) router.back();
+    if (event.target === event.currentTarget) close();
   }}
 >
 ```
 
-Esc is handled through the `cancel` event, which fires only when the user asks to close the dialog, so `router.back()` runs exactly once per close.
+Closing the dialog returns focus to the photo link that opened it, which stays mounted in the feed. `router.back()` alone would remove the still open dialog from the DOM and leave focus on `<body>`. Esc is handled through the `cancel` event, which fires only when the user asks to close the dialog, so `router.back()` runs exactly once per close.
 
 The intercepted page passes its title as a prop (``<Modal title={`Photo ${id}`}>``). The modal renders it as an `<h2>` and points `aria-labelledby` at it, so screen readers announce the dialog by name, and the feed behind it keeps the page's only `<h1>`.
 

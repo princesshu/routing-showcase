@@ -126,7 +126,7 @@ Since Next.js 16 a slot without `default.tsx` fails the build when its layout ha
 
 ### Interception only happens on client navigation
 
-Clicking a photo on `/feed` renders `app/feed/@modal/(..)photo/[id]` inside a `<dialog>`, with the feed still behind it. Esc, a backdrop click or the Close button call `router.back()`. Loading `/photo/1` directly or reloading renders the full page in `app/photo/[id]`. That canonical page is required: since Next.js 16.4 the build fails if an interception route has none.
+Clicking a photo on `/feed` renders `app/feed/@modal/(..)photo/[id]` inside a `<dialog>`, with the feed still behind it. Esc, a backdrop click or the Close button close the dialog, which returns focus to the photo link, then call `router.back()`. Loading `/photo/1` directly or reloading renders the full page in `app/photo/[id]`. That canonical page is required: since Next.js 16.4 the build fails if an interception route has none.
 
 ### Streaming fixes the status code
 
